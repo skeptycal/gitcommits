@@ -1,0 +1,5 @@
+package gitcommits // import "github.com/skeptycal/gitcommits"
+
+func Example()
+func Run() error
+type AppInfo struct{ ... }

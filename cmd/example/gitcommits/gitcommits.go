@@ -1,4 +1,4 @@
-package gitcommits
+package main
 
 // Reference: https://github.com/Lebonesco/daily-standup-cli
 
@@ -28,33 +28,24 @@ type commit struct {
 
 var verbose = false
 
-// Reference: https://itnext.io/how-to-create-your-own-cli-with-golang-3c50727ac608
-
-func Run() error {
+// https://itnext.io/how-to-create-your-own-cli-with-golang-3c50727ac608
+func main() {
 	app := cli.NewApp()
 	info(app)
 	flags(app)
 	commands(app)
 
-	return app.Run(os.Args)
-}
-
-type AppInfo struct {
-	Name    string `xml:"name"`
-	Usage   string `xml:"usage"`
-	Author  string `xml:"author"`
-	Version string `xml:"version"`
-}
-
-var appInfo = AppInfo{
-	Name:    "GitCommits",
-	Usage:   "Reports git history",
-	Author:  "github.com/skeptycal",
-	Version: "1.0.0",
+	err := app.Run(os.Args)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func info(app *cli.App) {
-
+	app.Name = "Daily Standup Helper CLI"
+	app.Usage = "Reports git history"
+	app.Author = "github.com/Lebonesco"
+	app.Version = "1.0.0"
 }
 
 func flags(app *cli.App) {
